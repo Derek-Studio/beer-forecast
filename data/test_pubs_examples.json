@@ -1,0 +1,74 @@
+[
+  {
+    "name": "Prince of Peckham",
+    "address": "1 Clayton Road, Peckham, London SE15 5JA",
+    "website": "https://princeofpeckham.co.uk",
+    "lat": 51.4697,
+    "lng": -0.0619,
+    "known_promotions_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/",
+    "expected": [
+      {
+        "description": "Thirsty Thursdays late-night happy hour — double house spirit + mixer",
+        "discount": "£6",
+        "days": "Thursday",
+        "time": "22:00-00:00"
+      },
+      {
+        "description": "Rack of shots",
+        "discount": "£25",
+        "days": "Thursday",
+        "time": "22:00-00:00"
+      },
+      {
+        "description": "All-day cocktails",
+        "discount": "£7",
+        "days": "Wednesday",
+        "time": "all day"
+      }
+    ]
+  },
+  {
+    "name": "Fabal Beerhall",
+    "address": "Arch 88, Druid Street, Bermondsey, London SE1 2HQ",
+    "website": "https://fabalbeers.com",
+    "lat": 51.5007,
+    "lng": -0.0806,
+    "known_promotions_url": "https://www.designmynight.com/london/bars/bermondsey/fabal-beerhall/quiz-karaoke-night-win-75-voucher-on-bermondsey-beer-mile",
+    "expected": [
+      {
+        "description": "Thursday quiz and karaoke night — winning team wins bar tab",
+        "discount": "£75 bar tab (winner), £25 bar tab (runner-up)",
+        "days": "Thursday",
+        "time": "19:00-22:45"
+      },
+      {
+        "description": "10% off drinks for pre-booked tables on quiz night",
+        "discount": "10%",
+        "days": "Thursday",
+        "time": "19:00-22:45"
+      }
+    ]
+  },
+  {
+    "name": "The Last Judgment",
+    "address": "95 Chancery Lane, London WC2A 1DT",
+    "website": "https://thelastjudgment.co.uk",
+    "lat": 51.5165,
+    "lng": -0.1126,
+    "known_promotions_url": "https://thelastjudgment.co.uk/whats-on/",
+    "expected": [
+      {
+        "description": "Footsie Fridays — drink prices fluctuate on live stock tickers with periodic market crash price drops",
+        "discount": "variable",
+        "days": "Friday",
+        "time": "17:30-close"
+      },
+      {
+        "description": "Stock Saturdays — drink prices fluctuate on live stock tickers with periodic market crash price drops",
+        "discount": "variable",
+        "days": "Saturday",
+        "time": "18:00-close"
+      }
+    ]
+  }
+]

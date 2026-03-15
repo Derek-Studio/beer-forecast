@@ -4,7 +4,8 @@ Phase 2: Test harness — run the research agent on 5 hand-picked London pubs
 and compare output against manually verified expected promotions.
 
 Usage:
-    python3 scripts/test_agent.py
+    python3 scripts/test_agent.py                   # use hardcoded test pubs
+    python3 scripts/test_agent.py --ids 1811 1783 952 456 1784  # use DB pubs by id
 
 Requires:
     - Ollama running with qwen3:1.7b
@@ -12,6 +13,7 @@ Requires:
     - pubs.db populated (run fetch_pubs.py first, or the script seeds test pubs)
 """
 
+import argparse
 import json
 import sqlite3
 import subprocess
@@ -225,7 +227,25 @@ def compare(pub_name: str, got: object, expected: list) -> bool:
         return True
 
 
+def load_pubs_by_ids(conn: sqlite3.Connection, ids: list[int]) -> list[dict]:
+    pubs = []
+    for pub_id in ids:
+        row = conn.execute(
+            "SELECT id, name, address FROM pubs WHERE id = ?", (pub_id,)
+        ).fetchone()
+        if row:
+            pubs.append({"id": row[0], "name": row[1], "address": row[2] or "London", "expected": []})
+        else:
+            print(f"WARNING: pub id {pub_id} not found in DB", file=sys.stderr)
+    return pubs
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--ids", type=int, nargs="+",
+                        help="DB pub IDs to test instead of hardcoded list")
+    args = parser.parse_args()
+
     if not AGENT_PATH.exists():
         print(f"ERROR: research_agent.py not found at {AGENT_PATH}", file=sys.stderr)
         sys.exit(1)
@@ -233,19 +253,27 @@ def main() -> None:
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     init_db(conn)
-    name_to_id = seed_test_pubs(conn)
 
-    print(f"Testing {len(TEST_PUBS)} pubs\n")
+    if args.ids:
+        pubs_to_test = load_pubs_by_ids(conn, args.ids)
+    else:
+        name_to_id = seed_test_pubs(conn)
+        pubs_to_test = [
+            {**pub, "id": name_to_id[pub["name"]]}
+            for pub in TEST_PUBS
+        ]
+
+    print(f"Testing {len(pubs_to_test)} pubs\n")
 
     results = []
-    for pub in TEST_PUBS:
-        pub_id = name_to_id[pub["name"]]
+    for pub in pubs_to_test:
+        pub_id = pub["id"]
         query_str = f"what promotions and deals are on at {pub['name']}, {pub['address']}, London"
 
         parsed, raw = call_agent(pub["name"], pub["address"])
         store_promotion(conn, pub_id, parsed, query_str)
 
-        passed = compare(pub["name"], parsed, pub["expected"])
+        passed = compare(pub["name"], parsed, pub.get("expected", []))
         results.append((pub["name"], passed))
 
     print(f"\n{'='*60}")
