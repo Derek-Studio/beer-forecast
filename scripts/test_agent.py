@@ -1,133 +1,122 @@
 #!/usr/bin/env python3
 """
-Phase 2: Test harness — run the research agent on 5 hand-picked London pubs
+Phase 2: Test harness — run the research agent on hand-picked London pubs
 and compare output against manually verified expected promotions.
 
 Usage:
     python3 scripts/test_agent.py                   # use hardcoded test pubs
-    python3 scripts/test_agent.py --ids 1811 1783 952 456 1784  # use DB pubs by id
+    python3 scripts/test_agent.py --ids 1 2 3       # use pubs by id from pubs.json
 
 Requires:
     - Ollama running with qwen3:1.7b
     - qwen-testing repo at /root/projects/qwen-testing with .venv set up
-    - pubs.db populated (run fetch_pubs.py first, or the script seeds test pubs)
+    - pubs.json populated (run fetch_pubs.py first, or the script seeds test pubs)
 """
 
 import argparse
 import json
-import sqlite3
 import subprocess
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent.parent / "data" / "pubs.db"
+DATA_PATH = Path(__file__).parent.parent / "data" / "pubs.json"
 AGENT_PATH = Path("/root/projects/qwen-testing/research_agent.py")
 AGENT_PYTHON = Path("/root/projects/qwen-testing/.venv/bin/python3")
 
 PROMOTION_SCHEMA = json.dumps([
-    {"description": "", "discount": "", "days": "", "time": ""}
+    {"description": "", "when": "", "source_url": ""}
 ])
 
-# 5 hand-picked pubs with known promotions for ground-truth comparison.
-# osm_id=None means we'll seed them directly if not already in the DB.
+# Hand-picked pubs with known promotions for ground-truth comparison.
 TEST_PUBS = [
     {
+        "osm_id": "test/0",
         "name": "The Goose",
         "address": "248 North End Road, Fulham, London",
         "website": "https://www.jdwetherspoon.com/pubs/all-pubs/england/london/the-goose-fulham",
         "lat": 51.4803,
         "lng": -0.1957,
         "expected": [
-            {"description": "Real ale club", "discount": "discounted ales", "days": "daily", "time": ""},
-            {"description": "Club soda / soft drinks", "discount": "free", "days": "daily", "time": ""},
+            {"description": "Real ale club", "when": "daily", "source_url": ""},
+            {"description": "Club soda / soft drinks free", "when": "daily", "source_url": ""},
         ],
     },
     {
-        "name": "The Crown Tavern",
-        "address": "43 Clerkenwell Green, London",
-        "website": "https://www.crowntavernclerkenwell.co.uk",
-        "lat": 51.5228,
-        "lng": -0.1053,
-        "expected": [],
+        "osm_id": "test/1",
+        "name": "Prince of Peckham",
+        "address": "1 Clayton Road, Peckham, London SE15 5JA",
+        "website": "https://princeofpeckham.co.uk",
+        "lat": 51.4697,
+        "lng": -0.0619,
+        "expected": [
+            {"description": "Thirsty Thursdays happy hour — double spirit + mixer £6", "when": "Thursday 22:00-00:00", "source_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/"},
+            {"description": "All-day cocktails £7", "when": "Wednesday all day", "source_url": ""},
+        ],
     },
     {
-        "name": "The Harp",
-        "address": "47 Chandos Place, Covent Garden, London",
-        "website": "https://www.harpcovengarden.com",
-        "lat": 51.5087,
-        "lng": -0.1238,
-        "expected": [],
+        "osm_id": "test/2",
+        "name": "Fabal Beerhall",
+        "address": "Arch 88, Druid Street, Bermondsey, London SE1 2HQ",
+        "website": "https://fabalbeers.com",
+        "lat": 51.5007,
+        "lng": -0.0806,
+        "expected": [
+            {"description": "Quiz and karaoke night — win £75 bar tab", "when": "Thursday 19:00-22:45", "source_url": ""},
+        ],
     },
     {
-        "name": "The Old Blue Last",
-        "address": "38 Great Eastern Street, Shoreditch, London",
-        "website": "https://www.theoldbluelast.com",
-        "lat": 51.5246,
-        "lng": -0.0813,
-        "expected": [],
-    },
-    {
-        "name": "Ye Olde Cheshire Cheese",
-        "address": "145 Fleet Street, London",
-        "website": "https://www.yeoldecheshirecheese.co.uk",
-        "lat": 51.5139,
-        "lng": -0.1083,
-        "expected": [],
+        "osm_id": "test/3",
+        "name": "The Last Judgment",
+        "address": "95 Chancery Lane, London WC2A 1DT",
+        "website": "https://thelastjudgment.co.uk",
+        "lat": 51.5165,
+        "lng": -0.1126,
+        "expected": [
+            {"description": "Footsie Fridays — drink prices on live stock tickers", "when": "Friday from 17:30", "source_url": "https://thelastjudgment.co.uk/whats-on/"},
+        ],
     },
 ]
 
 
-def init_db(conn: sqlite3.Connection) -> None:
-    conn.executescript("""
-        CREATE TABLE IF NOT EXISTS pubs (
-            id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            osm_id      TEXT UNIQUE NOT NULL,
-            name        TEXT,
-            lat         REAL NOT NULL,
-            lng         REAL NOT NULL,
-            address     TEXT,
-            website     TEXT,
-            created_at  TEXT NOT NULL
-        );
-
-        CREATE TABLE IF NOT EXISTS promotions (
-            id           INTEGER PRIMARY KEY AUTOINCREMENT,
-            pub_id       INTEGER NOT NULL REFERENCES pubs(id),
-            data         TEXT,
-            last_updated TEXT,
-            raw_query    TEXT
-        );
-    """)
-    conn.commit()
+def load_pubs() -> list[dict]:
+    if DATA_PATH.exists():
+        return json.loads(DATA_PATH.read_text())
+    return []
 
 
-def seed_test_pubs(conn: sqlite3.Connection) -> dict[str, int]:
-    """Insert test pubs if not already present. Returns name→id mapping."""
+def save_pubs(pubs: list[dict]) -> None:
+    DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DATA_PATH.write_text(json.dumps(pubs, indent=2))
+
+
+def seed_test_pubs(pubs: list[dict]) -> list[dict]:
+    """Insert test pubs if not already present. Returns updated pubs list."""
+    by_osm_id = {p["osm_id"]: p for p in pubs}
     now = datetime.now(timezone.utc).isoformat()
-    name_to_id = {}
-    for i, pub in enumerate(TEST_PUBS):
-        osm_id = f"test/{i}"
-        conn.execute(
-            """
-            INSERT INTO pubs (osm_id, name, lat, lng, address, website, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            ON CONFLICT(osm_id) DO UPDATE SET
-                name    = excluded.name,
-                lat     = excluded.lat,
-                lng     = excluded.lng,
-                address = excluded.address,
-                website = excluded.website
-            """,
-            (osm_id, pub["name"], pub["lat"], pub["lng"], pub["address"], pub["website"], now),
-        )
-        row = conn.execute("SELECT id FROM pubs WHERE osm_id = ?", (osm_id,)).fetchone()
-        name_to_id[pub["name"]] = row[0]
-    conn.commit()
-    return name_to_id
+    next_id = max((p["id"] for p in pubs), default=0) + 1
+
+    for pub in TEST_PUBS:
+        if pub["osm_id"] not in by_osm_id:
+            by_osm_id[pub["osm_id"]] = {
+                "id": next_id,
+                "osm_id": pub["osm_id"],
+                "name": pub["name"],
+                "lat": pub["lat"],
+                "lng": pub["lng"],
+                "address": pub["address"],
+                "website": pub["website"],
+                "created_at": now,
+                "promotions": None,
+                "promotions_last_updated": None,
+                "promotions_query": None,
+            }
+            next_id += 1
+
+    return list(by_osm_id.values())
 
 
-def call_agent(pub_name: str, address: str) -> tuple[str | None, str]:
+def call_agent(pub_name: str, address: str) -> tuple[object, str]:
     """Call research_agent.py as subprocess. Returns (parsed_json_or_none, raw_stdout)."""
     if not AGENT_PYTHON.exists():
         print(f"  ERROR: Python venv not found at {AGENT_PYTHON}")
@@ -144,30 +133,22 @@ def call_agent(pub_name: str, address: str) -> tuple[str | None, str]:
     print(f"  Running agent for: {pub_name}")
     print(f"  Query: {query}")
     try:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=300,
-        )
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
         stdout = result.stdout
         if result.returncode != 0:
             print(f"  Agent exited with code {result.returncode}")
             if result.stderr:
                 print(f"  stderr: {result.stderr[:500]}")
 
-        # Extract the JSON between the last pair of === lines
         lines = stdout.splitlines()
         sep_indices = [i for i, l in enumerate(lines) if l.startswith("=" * 10)]
         if len(sep_indices) >= 2:
-            json_lines = lines[sep_indices[-2] + 1: sep_indices[-1]]
-            raw_json = "\n".join(json_lines).strip()
+            raw_json = "\n".join(lines[sep_indices[-2] + 1: sep_indices[-1]]).strip()
         else:
             raw_json = stdout.strip()
 
         try:
-            parsed = json.loads(raw_json)
-            return parsed, stdout
+            return json.loads(raw_json), stdout
         except json.JSONDecodeError:
             return None, stdout
 
@@ -177,24 +158,6 @@ def call_agent(pub_name: str, address: str) -> tuple[str | None, str]:
     except Exception as e:
         print(f"  ERROR calling agent: {e}")
         return None, ""
-
-
-def store_promotion(conn: sqlite3.Connection, pub_id: int, data: object, raw_query: str) -> None:
-    now = datetime.now(timezone.utc).isoformat()
-    existing = conn.execute(
-        "SELECT id FROM promotions WHERE pub_id = ?", (pub_id,)
-    ).fetchone()
-    if existing:
-        conn.execute(
-            "UPDATE promotions SET data = ?, last_updated = ?, raw_query = ? WHERE pub_id = ?",
-            (json.dumps(data), now, raw_query, pub_id),
-        )
-    else:
-        conn.execute(
-            "INSERT INTO promotions (pub_id, data, last_updated, raw_query) VALUES (?, ?, ?, ?)",
-            (pub_id, json.dumps(data), now, raw_query),
-        )
-    conn.commit()
 
 
 def compare(pub_name: str, got: object, expected: list) -> bool:
@@ -214,7 +177,6 @@ def compare(pub_name: str, got: object, expected: list) -> bool:
         print("RESULT: FAIL (no JSON)")
         return False
 
-    # Basic sanity: agent returned a list with at least one item, or expected is empty
     if expected:
         if isinstance(got, list) and len(got) > 0:
             print("RESULT: PASS (returned list with items, expected non-empty)")
@@ -227,51 +189,50 @@ def compare(pub_name: str, got: object, expected: list) -> bool:
         return True
 
 
-def load_pubs_by_ids(conn: sqlite3.Connection, ids: list[int]) -> list[dict]:
-    pubs = []
-    for pub_id in ids:
-        row = conn.execute(
-            "SELECT id, name, address FROM pubs WHERE id = ?", (pub_id,)
-        ).fetchone()
-        if row:
-            pubs.append({"id": row[0], "name": row[1], "address": row[2] or "London", "expected": []})
-        else:
-            print(f"WARNING: pub id {pub_id} not found in DB", file=sys.stderr)
-    return pubs
-
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--ids", type=int, nargs="+",
-                        help="DB pub IDs to test instead of hardcoded list")
+                        help="Pub IDs from pubs.json to test instead of hardcoded list")
     args = parser.parse_args()
 
     if not AGENT_PATH.exists():
         print(f"ERROR: research_agent.py not found at {AGENT_PATH}", file=sys.stderr)
         sys.exit(1)
 
-    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(DB_PATH)
-    init_db(conn)
+    pubs = load_pubs()
 
     if args.ids:
-        pubs_to_test = load_pubs_by_ids(conn, args.ids)
+        by_id = {p["id"]: p for p in pubs}
+        pubs_to_test = []
+        for pub_id in args.ids:
+            if pub_id in by_id:
+                pubs_to_test.append({**by_id[pub_id], "expected": []})
+            else:
+                print(f"WARNING: pub id {pub_id} not found in pubs.json", file=sys.stderr)
     else:
-        name_to_id = seed_test_pubs(conn)
+        pubs = seed_test_pubs(pubs)
+        save_pubs(pubs)
+        by_osm_id = {p["osm_id"]: p for p in pubs}
         pubs_to_test = [
-            {**pub, "id": name_to_id[pub["name"]]}
-            for pub in TEST_PUBS
+            {**by_osm_id[tp["osm_id"]], "expected": tp["expected"]}
+            for tp in TEST_PUBS
         ]
 
     print(f"Testing {len(pubs_to_test)} pubs\n")
 
     results = []
     for pub in pubs_to_test:
-        pub_id = pub["id"]
-        query_str = f"what promotions and deals are on at {pub['name']}, {pub['address']}, London"
+        query_str = f"what promotions and deals are on at {pub['name']}, {pub.get('address') or 'London'}, London"
+        parsed, _ = call_agent(pub["name"], pub.get("address") or "London")
 
-        parsed, raw = call_agent(pub["name"], pub["address"])
-        store_promotion(conn, pub_id, parsed, query_str)
+        # Save result back into pubs.json
+        now = datetime.now(timezone.utc).isoformat()
+        by_id = {p["id"]: p for p in pubs}
+        by_id[pub["id"]]["promotions"] = parsed
+        by_id[pub["id"]]["promotions_last_updated"] = now
+        by_id[pub["id"]]["promotions_query"] = query_str
+        pubs = list(by_id.values())
+        save_pubs(pubs)
 
         passed = compare(pub["name"], parsed, pub.get("expected", []))
         results.append((pub["name"], passed))
@@ -281,10 +242,8 @@ def main() -> None:
     print(f"{'='*60}")
     passed_count = sum(1 for _, ok in results if ok)
     for name, ok in results:
-        status = "PASS" if ok else "FAIL"
-        print(f"  [{status}] {name}")
+        print(f"  [{'PASS' if ok else 'FAIL'}] {name}")
     print(f"\n{passed_count}/{len(results)} passed")
-    conn.close()
 
 
 if __name__ == "__main__":

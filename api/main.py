@@ -13,22 +13,21 @@ Usage:
 
 import json
 import math
-import sqlite3
 from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.responses import JSONResponse
 
-DB_PATH = Path(__file__).parent.parent / "data" / "pubs.db"
+DATA_PATH = Path(__file__).parent.parent / "data" / "pubs.json"
 
 app = FastAPI(title="Beer Forecast API", version="0.1.0")
 
 
-def get_conn() -> sqlite3.Connection:
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row
-    return conn
+def load_pubs() -> list[dict]:
+    if not DATA_PATH.exists():
+        raise HTTPException(status_code=503, detail="pubs.json not found. Run fetch_pubs.py first.")
+    return json.loads(DATA_PATH.read_text())
 
 
 def haversine_km(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
@@ -39,29 +38,32 @@ def haversine_km(lat1: float, lng1: float, lat2: float, lng2: float) -> float:
     return R * 2 * math.asin(math.sqrt(a))
 
 
-def pub_row_to_dict(row: sqlite3.Row) -> dict[str, Any]:
+def pub_summary(pub: dict) -> dict[str, Any]:
     return {
-        "id": row["id"],
-        "osm_id": row["osm_id"],
-        "name": row["name"],
-        "lat": row["lat"],
-        "lng": row["lng"],
-        "address": row["address"],
-        "website": row["website"],
-        "created_at": row["created_at"],
+        "id": pub["id"],
+        "osm_id": pub["osm_id"],
+        "name": pub["name"],
+        "lat": pub["lat"],
+        "lng": pub["lng"],
+        "address": pub.get("address"),
+        "website": pub.get("website"),
+        "created_at": pub.get("created_at"),
+    }
+
+
+def pub_detail(pub: dict) -> dict[str, Any]:
+    return {
+        **pub_summary(pub),
+        "promotions": pub.get("promotions"),
+        "promotions_last_updated": pub.get("promotions_last_updated"),
+        "promotions_query": pub.get("promotions_query"),
     }
 
 
 @app.get("/pubs")
 def list_pubs() -> JSONResponse:
-    if not DB_PATH.exists():
-        raise HTTPException(status_code=503, detail="Database not found. Run fetch_pubs.py first.")
-    conn = get_conn()
-    rows = conn.execute(
-        "SELECT id, osm_id, name, lat, lng, address, website, created_at FROM pubs ORDER BY name"
-    ).fetchall()
-    conn.close()
-    return JSONResponse([pub_row_to_dict(r) for r in rows])
+    pubs = load_pubs()
+    return JSONResponse(sorted([pub_summary(p) for p in pubs], key=lambda p: p["name"]))
 
 
 @app.get("/pubs/nearby")
@@ -70,32 +72,15 @@ def pubs_nearby(
     lng: float = Query(..., description="Longitude"),
     radius_km: float = Query(1.0, description="Search radius in kilometres"),
 ) -> JSONResponse:
-    if not DB_PATH.exists():
-        raise HTTPException(status_code=503, detail="Database not found. Run fetch_pubs.py first.")
-
-    # Rough bounding box filter first, then precise haversine
-    lat_delta = radius_km / 111.0
-    lng_delta = radius_km / (111.0 * math.cos(math.radians(lat)))
-
-    conn = get_conn()
-    rows = conn.execute(
-        """
-        SELECT id, osm_id, name, lat, lng, address, website, created_at
-        FROM pubs
-        WHERE lat BETWEEN ? AND ?
-          AND lng BETWEEN ? AND ?
-        """,
-        (lat - lat_delta, lat + lat_delta, lng - lng_delta, lng + lng_delta),
-    ).fetchall()
-    conn.close()
+    pubs = load_pubs()
 
     nearby = []
-    for row in rows:
-        dist = haversine_km(lat, lng, row["lat"], row["lng"])
+    for pub in pubs:
+        dist = haversine_km(lat, lng, pub["lat"], pub["lng"])
         if dist <= radius_km:
-            d = pub_row_to_dict(row)
-            d["distance_km"] = round(dist, 3)
-            nearby.append(d)
+            entry = pub_summary(pub)
+            entry["distance_km"] = round(dist, 3)
+            nearby.append(entry)
 
     nearby.sort(key=lambda x: x["distance_km"])
     return JSONResponse(nearby)
@@ -103,34 +88,8 @@ def pubs_nearby(
 
 @app.get("/pubs/{pub_id}")
 def get_pub(pub_id: int) -> JSONResponse:
-    if not DB_PATH.exists():
-        raise HTTPException(status_code=503, detail="Database not found. Run fetch_pubs.py first.")
-    conn = get_conn()
-    row = conn.execute(
-        "SELECT id, osm_id, name, lat, lng, address, website, created_at FROM pubs WHERE id = ?",
-        (pub_id,),
-    ).fetchone()
-    if not row:
-        conn.close()
-        raise HTTPException(status_code=404, detail="Pub not found")
-
-    promo = conn.execute(
-        "SELECT data, last_updated, raw_query FROM promotions WHERE pub_id = ?",
-        (pub_id,),
-    ).fetchone()
-    conn.close()
-
-    result = pub_row_to_dict(row)
-    if promo:
-        try:
-            result["promotions"] = json.loads(promo["data"]) if promo["data"] else None
-        except (json.JSONDecodeError, TypeError):
-            result["promotions"] = None
-        result["promotions_last_updated"] = promo["last_updated"]
-        result["promotions_query"] = promo["raw_query"]
-    else:
-        result["promotions"] = None
-        result["promotions_last_updated"] = None
-        result["promotions_query"] = None
-
-    return JSONResponse(result)
+    pubs = load_pubs()
+    for pub in pubs:
+        if pub["id"] == pub_id:
+            return JSONResponse(pub_detail(pub))
+    raise HTTPException(status_code=404, detail="Pub not found")

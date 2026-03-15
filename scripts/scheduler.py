@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Phase 4: Scheduler — loop through all pubs in DB, call research agent for each,
+Phase 4: Scheduler — loop through all pubs in pubs.json, call research agent for each,
 skip pubs updated within the last 7 days.
 
 Usage:
@@ -16,23 +16,30 @@ Usage:
 
 import argparse
 import json
-import sqlite3
 import subprocess
 import sys
 import time
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent.parent / "data" / "pubs.db"
+DATA_PATH = Path(__file__).parent.parent / "data" / "pubs.json"
 AGENT_PATH = Path("/root/projects/qwen-testing/research_agent.py")
 AGENT_PYTHON = Path("/root/projects/qwen-testing/.venv/bin/python3")
 
 PROMOTION_SCHEMA = json.dumps([
-    {"description": "", "discount": "", "days": "", "time": ""}
+    {"description": "", "when": "", "source_url": ""}
 ])
 
 STALE_AFTER_DAYS = 7
 LOOP_SLEEP_HOURS = 6
+
+
+def load_pubs() -> list[dict]:
+    return json.loads(DATA_PATH.read_text())
+
+
+def save_pubs(pubs: list[dict]) -> None:
+    DATA_PATH.write_text(json.dumps(pubs, indent=2))
 
 
 def call_agent(pub_name: str, address: str, raw_query: str) -> tuple[object, str]:
@@ -79,54 +86,36 @@ def is_stale(last_updated: str | None) -> bool:
         return True
 
 
-def run_once(conn: sqlite3.Connection, limit: int | None = None) -> None:
-    query = """
-        SELECT p.id, p.name, p.address,
-               pr.last_updated
-        FROM pubs p
-        LEFT JOIN promotions pr ON pr.pub_id = p.id
-        ORDER BY pr.last_updated ASC NULLS FIRST
-    """
-    rows = conn.execute(query).fetchall()
+def run_once(pubs: list[dict], limit: int | None = None) -> list[dict]:
+    # Sort by last updated ascending so stalest pubs go first
+    ordered = sorted(pubs, key=lambda p: p.get("promotions_last_updated") or "")
     if limit:
-        rows = rows[:limit]
+        ordered = ordered[:limit]
 
-    total = len(rows)
+    total = len(ordered)
     print(f"Processing {total} pubs (stale threshold: {STALE_AFTER_DAYS} days)\n")
 
-    skipped = 0
-    updated = 0
-    failed = 0
+    skipped = updated = failed = 0
+    by_id = {p["id"]: p for p in pubs}
 
-    for i, (pub_id, name, address, last_updated) in enumerate(rows, 1):
+    for i, pub in enumerate(ordered, 1):
+        last_updated = pub.get("promotions_last_updated")
         if not is_stale(last_updated):
             skipped += 1
-            print(f"[{i}/{total}] SKIP {name} (updated {last_updated})")
+            print(f"[{i}/{total}] SKIP {pub['name']} (updated {last_updated})")
             continue
 
-        addr_str = address or "London"
-        raw_query = f"what promotions and deals are on at {name}, {addr_str}, London"
-        print(f"[{i}/{total}] Processing: {name}")
+        addr_str = pub.get("address") or "London"
+        raw_query = f"what promotions and deals are on at {pub['name']}, {addr_str}, London"
+        print(f"[{i}/{total}] Processing: {pub['name']}")
         print(f"    Query: {raw_query}")
 
-        data, _ = call_agent(name, addr_str, raw_query)
+        data, _ = call_agent(pub["name"], addr_str, raw_query)
         now = datetime.now(timezone.utc).isoformat()
 
-        existing = conn.execute(
-            "SELECT id FROM promotions WHERE pub_id = ?", (pub_id,)
-        ).fetchone()
-
-        if existing:
-            conn.execute(
-                "UPDATE promotions SET data = ?, last_updated = ?, raw_query = ? WHERE pub_id = ?",
-                (json.dumps(data), now, raw_query, pub_id),
-            )
-        else:
-            conn.execute(
-                "INSERT INTO promotions (pub_id, data, last_updated, raw_query) VALUES (?, ?, ?, ?)",
-                (pub_id, json.dumps(data), now, raw_query),
-            )
-        conn.commit()
+        by_id[pub["id"]]["promotions"] = data
+        by_id[pub["id"]]["promotions_last_updated"] = now
+        by_id[pub["id"]]["promotions_query"] = raw_query
 
         if data is not None:
             updated += 1
@@ -136,6 +125,7 @@ def run_once(conn: sqlite3.Connection, limit: int | None = None) -> None:
             print(f"    WARN: agent returned no JSON")
 
     print(f"\nDone — updated: {updated}, skipped: {skipped}, failed: {failed}")
+    return list(by_id.values())
 
 
 def main() -> None:
@@ -151,22 +141,22 @@ def main() -> None:
         print("Run: cd /root/projects/qwen-testing && python3 -m venv .venv && .venv/bin/pip install -r requirements.txt && .venv/bin/playwright install chromium", file=sys.stderr)
         sys.exit(1)
 
-    if not DB_PATH.exists():
-        print(f"ERROR: {DB_PATH} not found. Run fetch_pubs.py first.", file=sys.stderr)
+    if not DATA_PATH.exists():
+        print(f"ERROR: {DATA_PATH} not found. Run fetch_pubs.py first.", file=sys.stderr)
         sys.exit(1)
-
-    conn = sqlite3.connect(DB_PATH)
 
     if args.loop:
         while True:
             print(f"\n[{datetime.now(timezone.utc).isoformat()}] Starting pass...")
-            run_once(conn, args.limit)
+            pubs = load_pubs()
+            pubs = run_once(pubs, args.limit)
+            save_pubs(pubs)
             print(f"Sleeping {LOOP_SLEEP_HOURS}h until next pass...")
             time.sleep(LOOP_SLEEP_HOURS * 3600)
     else:
-        run_once(conn, args.limit)
-
-    conn.close()
+        pubs = load_pubs()
+        pubs = run_once(pubs, args.limit)
+        save_pubs(pubs)
 
 
 if __name__ == "__main__":

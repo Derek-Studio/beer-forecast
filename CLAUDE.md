@@ -1,6 +1,6 @@
 # Beer Forecast
 
-A backend service that maps London pub promotions and discounts. It fetches pubs from OpenStreetMap, runs a research agent to discover their current deals, stores results in SQLite, and exposes a FastAPI server for a future mobile frontend.
+A backend service that maps London pub promotions and discounts. It fetches pubs from OpenStreetMap, runs a research agent to discover their current deals, stores results in a JSON file, and exposes a FastAPI server for a future mobile frontend.
 
 ## Architecture
 
@@ -8,7 +8,7 @@ A backend service that maps London pub promotions and discounts. It fetches pubs
 qwen-testing (own repo)          beer-forecast (this repo)        beer-forecast-app (future)
 ─────────────────────────        ─────────────────────────        ──────────────────────────
 research_agent.py         ──►    Python backend + FastAPI  ──►    Expo + React Native
-(called as subprocess)           SQLite database                  Map with pub pins
+(called as subprocess)           pubs.json data store             Map with pub pins
                                  Scheduler (weekly runs)          Promotion info cards
 ```
 
@@ -20,9 +20,9 @@ beer-forecast/
 ├── README.md
 ├── requirements.txt          # fastapi, uvicorn, requests
 ├── data/
-│   └── pubs.db               # SQLite (gitignored)
+│   └── pubs.json             # pub + promotion data (gitignored)
 ├── scripts/
-│   ├── fetch_pubs.py         # OSM → SQLite pub fetcher
+│   ├── fetch_pubs.py         # OSM → pubs.json fetcher
 │   ├── test_agent.py         # 5-pub test harness
 │   └── scheduler.py          # Periodic promotion updater
 └── api/
@@ -60,8 +60,9 @@ python3 -m venv .venv
 
 ## Database Schema
 
-**pubs**: id, osm_id, name, lat, lng, address, website, created_at
-**promotions**: id, pub_id, data (JSON blob), last_updated, raw_query
+Each pub object in `pubs.json`:
+- id, osm_id, name, lat, lng, address, website, created_at
+- promotions (list of `{description, when, source_url}`), promotions_last_updated, promotions_query
 
 ## Research Agent
 

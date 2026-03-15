@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 """
-Phase 1: Fetch London pubs from OpenStreetMap via Overpass API and store in SQLite.
+Phase 1: Fetch London pubs from OpenStreetMap via Overpass API and store in pubs.json.
 
 Usage:
     python3 scripts/fetch_pubs.py
 """
 
 import json
-import sqlite3
 import urllib.request
 import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
-DB_PATH = Path(__file__).parent.parent / "data" / "pubs.db"
+DATA_PATH = Path(__file__).parent.parent / "data" / "pubs.json"
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 
 # Greater London bounding box: south, west, north, east
@@ -29,28 +28,15 @@ out center tags;
 """.strip()
 
 
-def init_db(conn: sqlite3.Connection) -> None:
-    conn.executescript("""
-        CREATE TABLE IF NOT EXISTS pubs (
-            id          INTEGER PRIMARY KEY AUTOINCREMENT,
-            osm_id      TEXT UNIQUE NOT NULL,
-            name        TEXT,
-            lat         REAL NOT NULL,
-            lng         REAL NOT NULL,
-            address     TEXT,
-            website     TEXT,
-            created_at  TEXT NOT NULL
-        );
+def load_pubs() -> list[dict]:
+    if DATA_PATH.exists():
+        return json.loads(DATA_PATH.read_text())
+    return []
 
-        CREATE TABLE IF NOT EXISTS promotions (
-            id           INTEGER PRIMARY KEY AUTOINCREMENT,
-            pub_id       INTEGER NOT NULL REFERENCES pubs(id),
-            data         TEXT,
-            last_updated TEXT,
-            raw_query    TEXT
-        );
-    """)
-    conn.commit()
+
+def save_pubs(pubs: list[dict]) -> None:
+    DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+    DATA_PATH.write_text(json.dumps(pubs, indent=2))
 
 
 def fetch_pubs_from_osm() -> list[dict]:
@@ -118,52 +104,59 @@ def parse_element(el: dict) -> dict | None:
     }
 
 
-def upsert_pubs(conn: sqlite3.Connection, pubs: list[dict]) -> int:
+def upsert_pubs(existing: list[dict], incoming: list[dict]) -> tuple[list[dict], int]:
+    by_osm_id = {p["osm_id"]: p for p in existing}
     now = datetime.now(timezone.utc).isoformat()
-    inserted = 0
-    for pub in pubs:
-        try:
-            conn.execute(
-                """
-                INSERT INTO pubs (osm_id, name, lat, lng, address, website, created_at)
-                VALUES (:osm_id, :name, :lat, :lng, :address, :website, :created_at)
-                ON CONFLICT(osm_id) DO UPDATE SET
-                    name    = excluded.name,
-                    lat     = excluded.lat,
-                    lng     = excluded.lng,
-                    address = excluded.address,
-                    website = excluded.website
-                """,
-                {**pub, "created_at": now},
-            )
-            inserted += 1
-        except sqlite3.Error as e:
-            print(f"  Warning: could not insert {pub['osm_id']}: {e}")
-    conn.commit()
-    return inserted
+    upserted = 0
+
+    for pub in incoming:
+        osm_id = pub["osm_id"]
+        if osm_id in by_osm_id:
+            # Update fields but preserve id, created_at, and promotions
+            existing_pub = by_osm_id[osm_id]
+            existing_pub.update({
+                "name": pub["name"],
+                "lat": pub["lat"],
+                "lng": pub["lng"],
+                "address": pub["address"],
+                "website": pub["website"],
+            })
+        else:
+            new_id = max((p["id"] for p in by_osm_id.values()), default=0) + 1
+            by_osm_id[osm_id] = {
+                "id": new_id,
+                "osm_id": osm_id,
+                "name": pub["name"],
+                "lat": pub["lat"],
+                "lng": pub["lng"],
+                "address": pub["address"],
+                "website": pub["website"],
+                "created_at": now,
+                "promotions": None,
+                "promotions_last_updated": None,
+                "promotions_query": None,
+            }
+        upserted += 1
+
+    return list(by_osm_id.values()), upserted
 
 
 def main() -> None:
-    DB_PATH.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(DB_PATH)
-    init_db(conn)
-
+    existing = load_pubs()
     elements = fetch_pubs_from_osm()
 
-    pubs = []
+    parsed = []
     for el in elements:
-        parsed = parse_element(el)
-        if parsed:
-            pubs.append(parsed)
+        pub = parse_element(el)
+        if pub:
+            parsed.append(pub)
 
-    print(f"Parsed {len(pubs)} named pubs with coordinates")
+    print(f"Parsed {len(parsed)} named pubs with coordinates")
 
-    count = upsert_pubs(conn, pubs)
-    print(f"Upserted {count} pubs into {DB_PATH}")
-
-    total = conn.execute("SELECT COUNT(*) FROM pubs").fetchone()[0]
-    print(f"Total pubs in DB: {total}")
-    conn.close()
+    pubs, count = upsert_pubs(existing, parsed)
+    save_pubs(pubs)
+    print(f"Upserted {count} pubs into {DATA_PATH}")
+    print(f"Total pubs in file: {len(pubs)}")
 
 
 if __name__ == "__main__":
