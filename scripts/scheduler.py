@@ -16,6 +16,7 @@ Usage:
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -32,6 +33,8 @@ PROMOTION_SCHEMA = json.dumps([
 
 STALE_AFTER_DAYS = 7
 LOOP_SLEEP_HOURS = 6
+DEFAULT_PROVIDER = os.environ.get("AGENT_PROVIDER", "ollama")          # ollama or claude
+DEFAULT_SEARCH_PROVIDER = os.environ.get("AGENT_SEARCH_PROVIDER", "brave")  # brave or ddg
 
 
 def load_pubs() -> list[dict]:
@@ -42,14 +45,18 @@ def save_pubs(pubs: list[dict]) -> None:
     DATA_PATH.write_text(json.dumps(pubs, indent=2))
 
 
-def call_agent(pub_name: str, address: str, raw_query: str) -> tuple[object, str]:
+def call_agent(pub_name: str, address: str, raw_query: str, start_url: str | None = None, provider: str = DEFAULT_PROVIDER, search_provider: str = DEFAULT_SEARCH_PROVIDER) -> tuple[object, str]:
     """Call research agent subprocess. Returns (parsed_json_or_none, raw_stdout)."""
     cmd = [
         str(AGENT_PYTHON),
         str(AGENT_PATH),
         raw_query,
         "--schema", PROMOTION_SCHEMA,
+        "--provider", provider,
+        "--search-provider", search_provider,
     ]
+    if start_url:
+        cmd += ["--start-url", start_url]
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
         stdout = result.stdout
@@ -110,7 +117,7 @@ def run_once(pubs: list[dict], limit: int | None = None) -> list[dict]:
         print(f"[{i}/{total}] Processing: {pub['name']}")
         print(f"    Query: {raw_query}")
 
-        data, _ = call_agent(pub["name"], addr_str, raw_query)
+        data, _ = call_agent(pub["name"], addr_str, raw_query, pub.get("known_promotions_url"), DEFAULT_PROVIDER)
         now = datetime.now(timezone.utc).isoformat()
 
         by_id[pub["id"]]["promotions"] = data

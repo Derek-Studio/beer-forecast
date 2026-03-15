@@ -15,6 +15,7 @@ Requires:
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 from datetime import datetime, timezone
@@ -27,6 +28,8 @@ AGENT_PYTHON = Path("/root/projects/qwen-testing/.venv/bin/python3")
 PROMOTION_SCHEMA = json.dumps([
     {"description": "", "discount": "", "days": "", "time": "", "source_url": ""}
 ])
+DEFAULT_PROVIDER = os.environ.get("AGENT_PROVIDER", "ollama")          # ollama or claude
+DEFAULT_SEARCH_PROVIDER = os.environ.get("AGENT_SEARCH_PROVIDER", "brave")  # brave or ddg
 
 # Hand-picked pubs with known promotions for ground-truth comparison.
 TEST_PUBS = [
@@ -47,6 +50,7 @@ TEST_PUBS = [
         "name": "Prince of Peckham",
         "address": "1 Clayton Road, Peckham, London SE15 5JA",
         "website": "https://princeofpeckham.co.uk",
+        "known_promotions_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/",
         "lat": 51.4697,
         "lng": -0.0619,
         "expected": [
@@ -59,6 +63,7 @@ TEST_PUBS = [
         "name": "Fabal Beerhall",
         "address": "Arch 88, Druid Street, Bermondsey, London SE1 2HQ",
         "website": "https://fabalbeers.com",
+        "known_promotions_url": "https://www.designmynight.com/london/bars/bermondsey/fabal-beerhall/quiz-karaoke-night-win-75-voucher-on-bermondsey-beer-mile",
         "lat": 51.5007,
         "lng": -0.0806,
         "expected": [
@@ -70,6 +75,7 @@ TEST_PUBS = [
         "name": "The Last Judgment",
         "address": "95 Chancery Lane, London WC2A 1DT",
         "website": "https://thelastjudgment.co.uk",
+        "known_promotions_url": "https://thelastjudgment.co.uk/whats-on/",
         "lat": 51.5165,
         "lng": -0.1126,
         "expected": [
@@ -116,7 +122,7 @@ def seed_test_pubs(pubs: list[dict]) -> list[dict]:
     return list(by_osm_id.values())
 
 
-def call_agent(pub_name: str, address: str) -> tuple[object, str]:
+def call_agent(pub_name: str, address: str, start_url: str | None = None, provider: str = DEFAULT_PROVIDER, search_provider: str = DEFAULT_SEARCH_PROVIDER) -> tuple[object, str]:
     """Call research_agent.py as subprocess. Returns (parsed_json_or_none, raw_stdout)."""
     if not AGENT_PYTHON.exists():
         print(f"  ERROR: Python venv not found at {AGENT_PYTHON}")
@@ -129,7 +135,11 @@ def call_agent(pub_name: str, address: str) -> tuple[object, str]:
         str(AGENT_PATH),
         query,
         "--schema", PROMOTION_SCHEMA,
+        "--provider", provider,
+        "--search-provider", search_provider,
     ]
+    if start_url:
+        cmd += ["--start-url", start_url]
     print(f"  Running agent for: {pub_name}")
     print(f"  Query: {query}")
     try:
@@ -193,6 +203,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--ids", type=int, nargs="+",
                         help="Pub IDs from pubs.json to test instead of hardcoded list")
+    parser.add_argument("--provider", default=DEFAULT_PROVIDER, choices=["ollama", "claude"],
+                        help="LLM provider: ollama (default) or claude (Haiku via API)")
+    parser.add_argument("--search-provider", default=DEFAULT_SEARCH_PROVIDER, choices=["brave", "ddg"],
+                        help="Search provider: brave (default) or ddg (DuckDuckGo)")
     args = parser.parse_args()
 
     if not AGENT_PATH.exists():
@@ -223,7 +237,7 @@ def main() -> None:
     results = []
     for pub in pubs_to_test:
         query_str = f"what promotions and deals are on at {pub['name']}, {pub.get('address') or 'London'}, London"
-        parsed, _ = call_agent(pub["name"], pub.get("address") or "London")
+        parsed, _ = call_agent(pub["name"], pub.get("address") or "London", pub.get("known_promotions_url"), args.provider, args.search_provider)
 
         # Save result back into pubs.json
         now = datetime.now(timezone.utc).isoformat()
