@@ -17,11 +17,19 @@ from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 DATA_PATH = Path(__file__).parent.parent / "data" / "pubs.json"
 
 app = FastAPI(title="Beer Forecast API", version="0.1.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["GET"],
+    allow_headers=["*"],
+)
 
 
 def load_pubs() -> list[dict]:
