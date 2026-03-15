@@ -62,7 +62,7 @@ python3 -m venv .venv
 
 Each pub object in `pubs.json`:
 - id, osm_id, name, lat, lng, address, website, created_at
-- promotions (list of `{description, when, source_url}`), promotions_last_updated, promotions_query
+- promotions (list of `{description, discount, days, time, source_url}`), promotions_last_updated, promotions_query
 
 ## Research Agent
 

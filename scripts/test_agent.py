@@ -25,7 +25,7 @@ AGENT_PATH = Path("/root/projects/qwen-testing/research_agent.py")
 AGENT_PYTHON = Path("/root/projects/qwen-testing/.venv/bin/python3")
 
 PROMOTION_SCHEMA = json.dumps([
-    {"description": "", "when": "", "source_url": ""}
+    {"description": "", "discount": "", "days": "", "time": "", "source_url": ""}
 ])
 
 # Hand-picked pubs with known promotions for ground-truth comparison.
@@ -38,8 +38,8 @@ TEST_PUBS = [
         "lat": 51.4803,
         "lng": -0.1957,
         "expected": [
-            {"description": "Real ale club", "when": "daily", "source_url": ""},
-            {"description": "Club soda / soft drinks free", "when": "daily", "source_url": ""},
+            {"description": "Real ale club", "discount": "discounted ales", "days": "daily", "time": "", "source_url": ""},
+            {"description": "Club soda / soft drinks", "discount": "free", "days": "daily", "time": "", "source_url": ""},
         ],
     },
     {
@@ -50,8 +50,8 @@ TEST_PUBS = [
         "lat": 51.4697,
         "lng": -0.0619,
         "expected": [
-            {"description": "Thirsty Thursdays happy hour — double spirit + mixer £6", "when": "Thursday 22:00-00:00", "source_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/"},
-            {"description": "All-day cocktails £7", "when": "Wednesday all day", "source_url": ""},
+            {"description": "Thirsty Thursdays happy hour — double spirit + mixer", "discount": "£6", "days": "Thursday", "time": "22:00-00:00", "source_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/"},
+            {"description": "All-day cocktails", "discount": "£7", "days": "Wednesday", "time": "all day", "source_url": ""},
         ],
     },
     {
@@ -62,7 +62,7 @@ TEST_PUBS = [
         "lat": 51.5007,
         "lng": -0.0806,
         "expected": [
-            {"description": "Quiz and karaoke night — win £75 bar tab", "when": "Thursday 19:00-22:45", "source_url": ""},
+            {"description": "Quiz and karaoke night — win £75 bar tab", "discount": "£75 bar tab", "days": "Thursday", "time": "19:00-22:45", "source_url": ""},
         ],
     },
     {
@@ -73,7 +73,7 @@ TEST_PUBS = [
         "lat": 51.5165,
         "lng": -0.1126,
         "expected": [
-            {"description": "Footsie Fridays — drink prices on live stock tickers", "when": "Friday from 17:30", "source_url": "https://thelastjudgment.co.uk/whats-on/"},
+            {"description": "Footsie Fridays — drink prices on live stock tickers", "discount": "variable", "days": "Friday", "time": "17:30", "source_url": "https://thelastjudgment.co.uk/whats-on/"},
         ],
     },
 ]

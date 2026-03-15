@@ -27,7 +27,7 @@ AGENT_PATH = Path("/root/projects/qwen-testing/research_agent.py")
 AGENT_PYTHON = Path("/root/projects/qwen-testing/.venv/bin/python3")
 
 PROMOTION_SCHEMA = json.dumps([
-    {"description": "", "when": "", "source_url": ""}
+    {"description": "", "discount": "", "days": "", "time": "", "source_url": ""}
 ])
 
 STALE_AFTER_DAYS = 7
