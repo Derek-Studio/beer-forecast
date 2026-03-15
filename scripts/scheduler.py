@@ -33,7 +33,7 @@ PROMOTION_SCHEMA = json.dumps([
 
 STALE_AFTER_DAYS = 7
 LOOP_SLEEP_HOURS = 6
-DEFAULT_PROVIDER = os.environ.get("AGENT_PROVIDER", "ollama")          # ollama or claude
+DEFAULT_PROVIDER = os.environ.get("AGENT_PROVIDER", "minimax")         # minimax (default), claude, ollama
 DEFAULT_SEARCH_PROVIDER = os.environ.get("AGENT_SEARCH_PROVIDER", "brave")  # brave or ddg
 
 

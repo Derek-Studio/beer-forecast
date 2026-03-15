@@ -28,7 +28,7 @@ AGENT_PYTHON = Path("/root/projects/qwen-testing/.venv/bin/python3")
 PROMOTION_SCHEMA = json.dumps([
     {"description": "", "discount": "", "days": "", "time": "", "source_url": ""}
 ])
-DEFAULT_PROVIDER = os.environ.get("AGENT_PROVIDER", "ollama")          # ollama or claude
+DEFAULT_PROVIDER = os.environ.get("AGENT_PROVIDER", "minimax")         # minimax (default), claude, ollama
 DEFAULT_SEARCH_PROVIDER = os.environ.get("AGENT_SEARCH_PROVIDER", "brave")  # brave or ddg
 
 # Hand-picked pubs with known promotions for ground-truth comparison.
@@ -203,8 +203,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--ids", type=int, nargs="+",
                         help="Pub IDs from pubs.json to test instead of hardcoded list")
-    parser.add_argument("--provider", default=DEFAULT_PROVIDER, choices=["ollama", "claude"],
-                        help="LLM provider: ollama (default) or claude (Haiku via API)")
+    parser.add_argument("--provider", default=DEFAULT_PROVIDER, choices=["minimax", "claude", "ollama"],
+                        help="LLM provider: minimax (default), claude (Haiku), ollama (local Qwen)")
     parser.add_argument("--search-provider", default=DEFAULT_SEARCH_PROVIDER, choices=["brave", "ddg"],
                         help="Search provider: brave (default) or ddg (DuckDuckGo)")
     args = parser.parse_args()
