@@ -56,6 +56,8 @@ def pub_summary(pub: dict) -> dict[str, Any]:
         "address": pub.get("address"),
         "website": pub.get("website"),
         "created_at": pub.get("created_at"),
+        "venue_emoji": pub.get("venue_emoji", "🍻"),
+        "promotions": pub.get("promotions") or [],
     }
 
 

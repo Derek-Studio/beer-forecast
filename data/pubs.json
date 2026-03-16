@@ -9,11 +9,24 @@
     "website": "https://www.jdwetherspoon.com/pubs/all-pubs/england/london/the-goose-fulham",
     "created_at": "2026-03-15T22:04:54.132442+00:00",
     "promotions": [
-      {"description": "Real ale club — discounted rotating cask ales", "discount": "discounted", "days": "daily", "time": "", "source_url": "https://www.jdwetherspoon.com/pubs/all-pubs/england/london/the-goose-fulham"},
-      {"description": "Club soda / soft drinks free with any spirit purchase", "discount": "free", "days": "daily", "time": "", "source_url": ""}
+      {
+        "description": "Real ale club — discounted rotating cask ales",
+        "discount": "discounted",
+        "days": "daily",
+        "time": "",
+        "source_url": "https://www.jdwetherspoon.com/pubs/all-pubs/england/london/the-goose-fulham"
+      },
+      {
+        "description": "Club soda / soft drinks free with any spirit purchase",
+        "discount": "free",
+        "days": "daily",
+        "time": "",
+        "source_url": ""
+      }
     ],
     "promotions_last_updated": "2026-03-15T22:30:16.061241+00:00",
-    "promotions_query": "what promotions and deals are on at The Goose, 248 North End Road, Fulham, London, London"
+    "promotions_query": "what promotions and deals are on at The Goose, 248 North End Road, Fulham, London, London",
+    "venue_emoji": "🍻"
   },
   {
     "id": 2,
@@ -25,12 +38,31 @@
     "website": "https://princeofpeckham.co.uk",
     "created_at": "2026-03-15T22:04:54.132442+00:00",
     "promotions": [
-      {"description": "Thirsty Thursdays late-night happy hour — double house spirit + mixer", "discount": "£6", "days": "Thursday", "time": "22:00-00:00", "source_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/"},
-      {"description": "Rack of shots", "discount": "£25", "days": "Thursday", "time": "22:00-00:00", "source_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/"},
-      {"description": "All-day cocktails", "discount": "£7", "days": "Wednesday", "time": "all day", "source_url": ""}
+      {
+        "description": "Thirsty Thursdays late-night happy hour — double house spirit + mixer",
+        "discount": "£6",
+        "days": "Thursday",
+        "time": "22:00-00:00",
+        "source_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/"
+      },
+      {
+        "description": "Rack of shots",
+        "discount": "£25",
+        "days": "Thursday",
+        "time": "22:00-00:00",
+        "source_url": "https://princeofpeckham.co.uk/listings/late-night-happy-hour/"
+      },
+      {
+        "description": "All-day cocktails",
+        "discount": "£7",
+        "days": "Wednesday",
+        "time": "all day",
+        "source_url": ""
+      }
     ],
     "promotions_last_updated": "2026-03-15T22:35:16.177286+00:00",
-    "promotions_query": "what promotions and deals are on at Prince of Peckham, 1 Clayton Road, Peckham, London SE15 5JA, London"
+    "promotions_query": "what promotions and deals are on at Prince of Peckham, 1 Clayton Road, Peckham, London SE15 5JA, London",
+    "venue_emoji": "🍻"
   },
   {
     "id": 3,
@@ -42,11 +74,24 @@
     "website": "https://fabalbeers.com",
     "created_at": "2026-03-15T22:04:54.132442+00:00",
     "promotions": [
-      {"description": "Thursday quiz and karaoke night — winning team wins bar tab", "discount": "£75 bar tab (winner), £25 bar tab (runner-up)", "days": "Thursday", "time": "19:00-22:45", "source_url": "https://www.designmynight.com/london/bars/bermondsey/fabal-beerhall/quiz-karaoke-night-win-75-voucher-on-bermondsey-beer-mile"},
-      {"description": "10% off drinks for pre-booked tables on quiz night", "discount": "10%", "days": "Thursday", "time": "19:00-22:45", "source_url": ""}
+      {
+        "description": "Thursday quiz and karaoke night — winning team wins bar tab",
+        "discount": "£75 bar tab (winner), £25 bar tab (runner-up)",
+        "days": "Thursday",
+        "time": "19:00-22:45",
+        "source_url": "https://www.designmynight.com/london/bars/bermondsey/fabal-beerhall/quiz-karaoke-night-win-75-voucher-on-bermondsey-beer-mile"
+      },
+      {
+        "description": "10% off drinks for pre-booked tables on quiz night",
+        "discount": "10%",
+        "days": "Thursday",
+        "time": "19:00-22:45",
+        "source_url": ""
+      }
     ],
     "promotions_last_updated": "2026-03-15T22:40:16.291380+00:00",
-    "promotions_query": "what promotions and deals are on at Fabal Beerhall, Arch 88, Druid Street, Bermondsey, London SE1 2HQ, London"
+    "promotions_query": "what promotions and deals are on at Fabal Beerhall, Arch 88, Druid Street, Bermondsey, London SE1 2HQ, London",
+    "venue_emoji": "🍺"
   },
   {
     "id": 4,
@@ -58,10 +103,1425 @@
     "website": "https://thelastjudgment.co.uk",
     "created_at": "2026-03-15T22:04:54.132442+00:00",
     "promotions": [
-      {"description": "Footsie Fridays — drink prices fluctuate on live stock tickers with periodic market crash price drops", "discount": "variable", "days": "Friday", "time": "17:30-close", "source_url": "https://thelastjudgment.co.uk/whats-on/"},
-      {"description": "Stock Saturdays — drink prices fluctuate on live stock tickers with periodic market crash price drops", "discount": "variable", "days": "Saturday", "time": "18:00-close", "source_url": "https://thelastjudgment.co.uk/whats-on/"}
+      {
+        "description": "Footsie Fridays — drink prices fluctuate on live stock tickers with periodic market crash price drops",
+        "discount": "variable",
+        "days": "Friday",
+        "time": "17:30-close",
+        "source_url": "https://thelastjudgment.co.uk/whats-on/"
+      },
+      {
+        "description": "Stock Saturdays — drink prices fluctuate on live stock tickers with periodic market crash price drops",
+        "discount": "variable",
+        "days": "Saturday",
+        "time": "18:00-close",
+        "source_url": "https://thelastjudgment.co.uk/whats-on/"
+      }
     ],
     "promotions_last_updated": "2026-03-15T22:24:54.577153+00:00",
-    "promotions_query": "what promotions and deals are on at The Last Judgment, 95 Chancery Lane, London WC2A 1DT, London"
+    "promotions_query": "what promotions and deals are on at The Last Judgment, 95 Chancery Lane, London WC2A 1DT, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 5,
+    "osm_id": "way/112673208",
+    "name": "The Old Swan",
+    "lat": 51.5089768,
+    "lng": -0.1949996,
+    "address": "206 Kensington Church Street, London",
+    "website": "https://www.greeneking.co.uk/pubs/greater-london/old-swan",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "£3 pint offer",
+        "discount": "£3",
+        "days": "Friday to Sunday",
+        "time": "Available 27/03 - 29/03",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/old-swan"
+      },
+      {
+        "description": "Weekend Takeover competition with prizes including spa day, speaker, or £250 Secret Escapes voucher",
+        "discount": "Variable",
+        "days": "Friday to Sunday",
+        "time": "Available 27/03 - 29/03",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/old-swan"
+      },
+      {
+        "description": "Complimentary Jameson, ginger & lime",
+        "discount": "Free",
+        "days": "Wednesday",
+        "time": "St Patrick’s Day hours",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/old-swan"
+      },
+      {
+        "description": "£2 Baby Guinness shots",
+        "discount": "£2",
+        "days": "Wednesday",
+        "time": "St Patrick’s Day hours",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/old-swan"
+      },
+      {
+        "description": "Lunch deal",
+        "discount": "Unbeatable price",
+        "days": "Monday to Friday",
+        "time": "12pm - 3pm",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/old-swan"
+      },
+      {
+        "description": "Spin to Win for free food and drink",
+        "discount": "Free",
+        "days": "Daily",
+        "time": "Not specified",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/old-swan"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:30:49.803149+00:00",
+    "promotions_query": "what promotions and deals are on at The Old Swan, 206 Kensington Church Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 6,
+    "osm_id": "node/30592674",
+    "name": "Prince Albert",
+    "lat": 51.5095361,
+    "lng": -0.1975022,
+    "address": "11 Pembridge Road, London",
+    "website": "https://www.the-prince-albert.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:30:56.833122+00:00",
+    "promotions_query": "what promotions and deals are on at Prince Albert, 11 Pembridge Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 7,
+    "osm_id": "way/807272441",
+    "name": "Mall Tavern",
+    "lat": 51.5084628,
+    "lng": -0.1939267,
+    "address": "71-73 Palace Gardens Terrace, London",
+    "website": "http://www.themallw8.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:02.912137+00:00",
+    "promotions_query": "what promotions and deals are on at Mall Tavern, 71-73 Palace Gardens Terrace, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 8,
+    "osm_id": "way/367518277",
+    "name": "The Hillgate",
+    "lat": 51.5079008,
+    "lng": -0.1976158,
+    "address": "24 Hillgate Place, London",
+    "website": "https://thehillgate.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:05.937030+00:00",
+    "promotions_query": "what promotions and deals are on at The Hillgate, 24 Hillgate Place, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 9,
+    "osm_id": "way/364768722",
+    "name": "Uxbridge Arms",
+    "lat": 51.5083386,
+    "lng": -0.1988359,
+    "address": "13 Uxbridge Street, London",
+    "website": "https://www.theuxbridgearmskensington.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:09.166101+00:00",
+    "promotions_query": "what promotions and deals are on at Uxbridge Arms, 13 Uxbridge Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 10,
+    "osm_id": "node/12437701305",
+    "name": "The Blue Stoops",
+    "lat": 51.5072365,
+    "lng": -0.1948618,
+    "address": "127-129 Kensington Church Street, London",
+    "website": "https://www.thebluestoops.com",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:14.296139+00:00",
+    "promotions_query": "what promotions and deals are on at The Blue Stoops, 127-129 Kensington Church Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 11,
+    "osm_id": "way/192794336",
+    "name": "The Churchill Arms",
+    "lat": 51.5068744,
+    "lng": -0.1948709,
+    "address": "119 Kensington Church Street, London",
+    "website": "https://www.churchillarmskensington.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:16.930545+00:00",
+    "promotions_query": "what promotions and deals are on at The Churchill Arms, 119 Kensington Church Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 12,
+    "osm_id": "way/356687576",
+    "name": "Sun in Splendour",
+    "lat": 51.5109396,
+    "lng": -0.1978277,
+    "address": "7 Portobello Road, London",
+    "website": "https://www.suninsplendourpub.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:24.120644+00:00",
+    "promotions_query": "what promotions and deals are on at Sun in Splendour, 7 Portobello Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 13,
+    "osm_id": "way/149060320",
+    "name": "The Champion",
+    "lat": 51.5100381,
+    "lng": -0.1923192,
+    "address": "1 Wellington Terrace, London",
+    "website": "https://www.thechampionpub.co.uk/#",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:30.858617+00:00",
+    "promotions_query": "what promotions and deals are on at The Champion, 1 Wellington Terrace, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 14,
+    "osm_id": "way/364339508",
+    "name": "Windsor Castle",
+    "lat": 51.5062926,
+    "lng": -0.1985253,
+    "address": "114 Campden Hill Road, London",
+    "website": "https://www.thewindsorcastlekensington.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:37.218468+00:00",
+    "promotions_query": "what promotions and deals are on at Windsor Castle, 114 Campden Hill Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 15,
+    "osm_id": "way/621622012",
+    "name": "The Prince Edward",
+    "lat": 51.5129438,
+    "lng": -0.1935314,
+    "address": "73 Prince's Square, London",
+    "website": "https://www.theprince-edward.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:42.794315+00:00",
+    "promotions_query": "what promotions and deals are on at The Prince Edward, 73 Prince's Square, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 16,
+    "osm_id": "way/765454461",
+    "name": "The Ladbroke Arms",
+    "lat": 51.5090809,
+    "lng": -0.2029018,
+    "address": "54 Ladbroke Road, London",
+    "website": "https://www.ladbrokearms.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:31:46.267750+00:00",
+    "promotions_query": "what promotions and deals are on at The Ladbroke Arms, 54 Ladbroke Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 17,
+    "osm_id": "node/489706578",
+    "name": "The Mitre",
+    "lat": 51.5079559,
+    "lng": -0.2034601,
+    "address": "40 Holland Park Avenue, London",
+    "website": "https://www.themitrew11.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Free glass of Lillet Rosé on arrival with Mother's Day lunch",
+        "discount": "Free glass of Lillet Rosé",
+        "days": "Sunday",
+        "time": "Lunch hours",
+        "source_url": "https://www.themitrew11.co.uk/"
+      },
+      {
+        "description": "Two courses for £18, three courses for £22",
+        "discount": "£18 for two courses, £22 for three courses",
+        "days": "Monday, Tuesday, Wednesday, Thursday",
+        "time": "12-8pm",
+        "source_url": "https://www.thimitrew11.co.uk/"
+      },
+      {
+        "description": "£25 Bottles of Prosecco",
+        "discount": "£25 per bottle",
+        "days": "Friday",
+        "time": "Not specified",
+        "source_url": "https://www.themitrew11.co.uk/"
+      },
+      {
+        "description": "Watch Six Nations live with an electric atmosphere",
+        "discount": "Not specified",
+        "days": "Specific dates not provided",
+        "time": "Not specified",
+        "source_url": "https://www.themitrew11.co.uk/"
+      },
+      {
+        "description": "Spring-Summer Menu Launch",
+        "discount": "Not specified",
+        "days": "Wednesday",
+        "time": "Not specified",
+        "source_url": "https://www.thimitrew11.co.uk/"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:31:58.101868+00:00",
+    "promotions_query": "what promotions and deals are on at The Mitre, 40 Holland Park Avenue, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 18,
+    "osm_id": "way/107155373",
+    "name": "Phoenix",
+    "lat": 51.512317,
+    "lng": -0.1898887,
+    "address": "51 Moscow Road, London",
+    "website": "https://www.greeneking.co.uk/pubs/greater-london/phoenix",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "£3 pint offer",
+        "discount": "£3",
+        "days": "Friday to Sunday",
+        "time": "Available 27/03 - 29/03",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/phoenix"
+      },
+      {
+        "description": "Weekend Takeover competition",
+        "discount": "Win spa day, speaker, or £250 Secret Escapes voucher",
+        "days": "Friday to Sunday",
+        "time": "Available 27/03 - 29/03",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/phoenix"
+      },
+      {
+        "description": "Complimentary Jameson, ginger & lime",
+        "discount": "Free drink",
+        "days": "Thursday",
+        "time": "St Patrick’s Day hours",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/phoenix"
+      },
+      {
+        "description": "£2 Baby Guinness shots",
+        "discount": "£2",
+        "days": "Thursday",
+        "time": "St Patrick’s Day hours",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/phoenix"
+      },
+      {
+        "description": "Lunch deal",
+        "discount": "Unbeatable price",
+        "days": "Monday to Friday",
+        "time": "12pm - 3pm",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/phoenix"
+      },
+      {
+        "description": "Six Nations 2026 viewing",
+        "discount": "Free to watch",
+        "days": "February 5th onwards (Men's), April 11th onwards (Women's)",
+        "time": "Game times",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/phoenix"
+      },
+      {
+        "description": "Spin to Win promotion",
+        "discount": "Free food and drink",
+        "days": "Every day",
+        "time": "App access anytime",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/phoenix"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:32:23.893252+00:00",
+    "promotions_query": "what promotions and deals are on at Phoenix, 51 Moscow Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 19,
+    "osm_id": "way/761312030",
+    "name": "Kings Head",
+    "lat": 51.5123734,
+    "lng": -0.1891188,
+    "address": "33 Moscow Road, London",
+    "website": "https://www.greeneking.co.uk/pubs/greater-london/kings-head",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "£3 pint offer",
+        "discount": "£3",
+        "days": "Friday - Sunday",
+        "time": "Available 27/03 - 29/03",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/kings-head"
+      },
+      {
+        "description": "Weekend Takeover competition",
+        "discount": "Win spa day, speaker, or £250 Secret Escapes voucher",
+        "days": "Friday - Sunday",
+        "time": "Available 27/03 - 29/03",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/kings-head"
+      },
+      {
+        "description": "Complimentary Jameson, ginger & lime",
+        "discount": "Free drink",
+        "days": "Thursday",
+        "time": "St Patrick’s Day hours",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/kings-head"
+      },
+      {
+        "description": "£2 Baby Guinness shots",
+        "discount": "£2",
+        "days": "Thursday",
+        "time": "St Patrick’s Day hours",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/kings-head"
+      },
+      {
+        "description": "Mother's Day 2026 three-course set menu",
+        "discount": "Special menu",
+        "days": "Sunday",
+        "time": "All day",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/kings-head"
+      },
+      {
+        "description": "Watch the Six Nations 2026",
+        "discount": "No discount",
+        "days": "Saturday - Sunday",
+        "time": "Game times",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/kings-head"
+      },
+      {
+        "description": "Watch live football",
+        "discount": "No discount",
+        "days": "Daily",
+        "time": "Game times",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/kings-head"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:32:47.783631+00:00",
+    "promotions_query": "what promotions and deals are on at Kings Head, 33 Moscow Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 20,
+    "osm_id": "way/357280502",
+    "name": "Earl of Lonsdale",
+    "lat": 51.5134582,
+    "lng": -0.2027232,
+    "address": "277-281 Westbourne Grove, London",
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Happy hour with various drink deals",
+        "discount": "Spirit and mixer for £2.50, Bottle of beer for £3, Glass of wine for £3, Double spirit and mixer for £5, Bottle of wine for £12, Cocktail teapot for £15, Shot Bats (6 shots) for £20, Bottle of Prosecco for £20",
+        "days": "Sunday to Friday",
+        "time": "16:00-21:00 (15:00-20:00 in the West End)",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "2-for-1 cocktails and cocktail teapots",
+        "discount": "Cocktail teapots for £15",
+        "days": "Saturday",
+        "time": "All day",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "Tank-fresh beer",
+        "discount": "£3.99 a pint",
+        "days": "Thursday, Friday",
+        "time": "17:00-19:00",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "Two cocktails for the price of one",
+        "discount": "50% off",
+        "days": "Monday to Sunday",
+        "time": "Until 19:00",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "£6.50 cocktails",
+        "discount": "£6.50",
+        "days": "Monday",
+        "time": "All night",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "Elevated classic cocktails",
+        "discount": "Any two for £16",
+        "days": "Monday to Sunday",
+        "time": "18:00-20:00",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "Various food and drink deals",
+        "discount": "£1 oysters, £1 shrimp, £2 Cajun fries, £3 bacon beignet, £4 pint, £4 house wine, £5 Margarita, £5 Bloody Mary, £5 Mimosa",
+        "days": "Monday to Friday, Saturday, Sunday",
+        "time": "Weekdays 16:00-18:00, weekends and bank holidays 11:00-12:00",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "2-4-1 cocktails",
+        "discount": "50% off",
+        "days": "Monday to Sunday",
+        "time": "17:00-20:00",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "Extra ‘Appi Hour’ for more cut-price drinking",
+        "discount": "Variable",
+        "days": "Monday to Sunday",
+        "time": "17:00-20:00",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "‘Old Fashioned Wednesday’",
+        "discount": "House Old Fashioned for £5",
+        "days": "Wednesday",
+        "time": "All day",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "‘Thirsty Thursday’",
+        "discount": "House cocktails half price",
+        "days": "Thursday",
+        "time": "18:00-21:00",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      },
+      {
+        "description": "Classic Margarita",
+        "discount": "£8",
+        "days": "Monday to Sunday",
+        "time": "18:00-19:00",
+        "source_url": "https://secretldn.com/best-happy-hours-london/"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:34:40.106725+00:00",
+    "promotions_query": "what promotions and deals are on at Earl of Lonsdale, 277-281 Westbourne Grove, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 21,
+    "osm_id": "way/803223234",
+    "name": "The Elephant and Castle",
+    "lat": 51.5030614,
+    "lng": -0.1935345,
+    "address": "40-42 Holland Street, London",
+    "website": "https://www.nicholsonspubs.co.uk/restaurants/london/theelephantandcastlekensingtonlondon",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:34:46.110495+00:00",
+    "promotions_query": "what promotions and deals are on at The Elephant and Castle, 40-42 Holland Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 22,
+    "osm_id": "node/30585304",
+    "name": "The Bayswater Arms",
+    "lat": 51.5126423,
+    "lng": -0.187786,
+    "address": null,
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Free Welcome Cocktail for all cabaret entry and dinner bookings",
+        "discount": "Free cocktail",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "Complimentary Mango Berry Cooler Mocktail with every main meal purchased",
+        "discount": "Free mocktail",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "Free glass of wine when dining from the a la carte menu",
+        "discount": "Free glass of wine",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "Free dessert with any main course selected from the a la carte lunch menu",
+        "discount": "Free dessert",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "15% discount on food and drink in the Museum’s Upper Deck café-bar",
+        "discount": "15% off",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "15% off the entire food bill, except on Saturdays",
+        "discount": "15% off",
+        "days": "Monday to Friday, Sunday",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "25% off main a la carte menu",
+        "discount": "25% off",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "15% off final food bill",
+        "discount": "15% off",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "10% off the final bill",
+        "discount": "10% off",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "20% off food and soft drinks from the a la carte menu and merchandise",
+        "discount": "20% off",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      },
+      {
+        "description": "10% off your entire bill",
+        "discount": "10% off",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.scribd.com/document/677217539/explore-more-and-pay-less-with-visitor-oyster-card-apr-16"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:35:38.441907+00:00",
+    "promotions_query": "what promotions and deals are on at The Bayswater Arms, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 23,
+    "osm_id": "way/363039919",
+    "name": "The Cock and Bottle",
+    "lat": 51.5154093,
+    "lng": -0.1975326,
+    "address": "17 Needham Road, London",
+    "website": "https://www.cockandbottlew11.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Pub Quiz Tuesdays",
+        "discount": "Not specified",
+        "days": "Tuesday",
+        "time": "Not specified",
+        "source_url": "https://www.cockandbottlew11.com/"
+      },
+      {
+        "description": "Live sports events including Six Nations Rugby",
+        "discount": "Not specified",
+        "days": "Not specified",
+        "time": "Not specified",
+        "source_url": "https://www.cockandbottlew11.com/"
+      },
+      {
+        "description": "Live sports events including FIFA World Cup 2026",
+        "discount": "Not specified",
+        "days": "Not specified",
+        "time": "Not specified",
+        "source_url": "https://www.cockandbottlew11.com/"
+      },
+      {
+        "description": "After Work Drinks",
+        "discount": "Not specified",
+        "days": "Not specified",
+        "time": "Not specified",
+        "source_url": "https://www.cockandbottlew11.com/"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:36:38.723388+00:00",
+    "promotions_query": "what promotions and deals are on at The Cock and Bottle, 17 Needham Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 24,
+    "osm_id": "way/362240472",
+    "name": "Walmer Castle",
+    "lat": 51.5151881,
+    "lng": -0.1991615,
+    "address": "58 Ledbury Road, London",
+    "website": "https://www.walmercastlenottinghill.co.uk/#",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:36:44.442259+00:00",
+    "promotions_query": "what promotions and deals are on at Walmer Castle, 58 Ledbury Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 25,
+    "osm_id": "way/756195971",
+    "name": "The Princess Royal",
+    "lat": 51.5155848,
+    "lng": -0.1943554,
+    "address": "47 Hereford Road, London",
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:36:56.298577+00:00",
+    "promotions_query": "what promotions and deals are on at The Princess Royal, 47 Hereford Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 26,
+    "osm_id": "node/7099537759",
+    "name": "The Hayden",
+    "lat": 51.5153695,
+    "lng": -0.1913501,
+    "address": null,
+    "website": "https://www.haydennottinghill.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "All Harbour pints for £5",
+        "discount": "£5 per pint",
+        "days": "Wednesday",
+        "time": "All day",
+        "source_url": "https://www.haydennottinghill.com/"
+      },
+      {
+        "description": "15% off direct booking rates",
+        "discount": "15% off",
+        "days": "All days",
+        "time": "All day",
+        "source_url": "https://www.haydennottinghill.com/"
+      },
+      {
+        "description": "One Main and one Drink for £15",
+        "discount": "£15",
+        "days": "Monday to Thursday",
+        "time": "12pm to 4pm",
+        "source_url": "https://www.haydennottinghill.com/"
+      },
+      {
+        "description": "Two-for-one cocktails",
+        "discount": "Two-for-one",
+        "days": "Monday to Thursday",
+        "time": "12pm to 7pm",
+        "source_url": "https://www.haydennottinghill.com/"
+      },
+      {
+        "description": "Brunch Offer",
+        "discount": "Not specified",
+        "days": "Saturday & Sunday",
+        "time": "9am to 12pm",
+        "source_url": "https://www.haydennottinghill.com/"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:37:09.508215+00:00",
+    "promotions_query": "what promotions and deals are on at The Hayden, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 27,
+    "osm_id": "way/753467777",
+    "name": "Prince Alfred",
+    "lat": 51.5136724,
+    "lng": -0.187465,
+    "address": "112 Queensway, London",
+    "website": "https://www.prince-alfred.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:37:15.017428+00:00",
+    "promotions_query": "what promotions and deals are on at Prince Alfred, 112 Queensway, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 28,
+    "osm_id": "way/159741243",
+    "name": "The Castle",
+    "lat": 51.5069343,
+    "lng": -0.2070241,
+    "address": "100 Holland Park Avenue, London",
+    "website": "https://www.castlehollandpark.co.uk/#",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:37:21.575863+00:00",
+    "promotions_query": "what promotions and deals are on at The Castle, 100 Holland Park Avenue, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 29,
+    "osm_id": "node/7532833476",
+    "name": "The Prince of Wales",
+    "lat": 51.5023506,
+    "lng": -0.1909183,
+    "address": "8 Kensington Church Street, London",
+    "website": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Watch The Six Nations at the Prince of Wales",
+        "discount": "N/A",
+        "days": "Monday to Sunday",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "Lunch deal",
+        "discount": "Unbeatable price",
+        "days": "Monday to Friday",
+        "time": "12pm to 3pm",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "£3 pint",
+        "discount": "£3",
+        "days": "27/03 - 29/03",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "Free drink",
+        "discount": "Free Jameson, ginger & lime",
+        "days": "N/A",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "£2 Baby Guinness",
+        "discount": "£2",
+        "days": "N/A",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "Watch the Six Nations 2026",
+        "discount": "N/A",
+        "days": "Monday to Sunday",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "Free main, dessert, or pint",
+        "discount": "Free",
+        "days": "N/A",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "Spin to Win",
+        "discount": "Free food and drink",
+        "days": "N/A",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "Watch live sport",
+        "discount": "N/A",
+        "days": "N/A",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      },
+      {
+        "description": "Sunday Roast",
+        "discount": "N/A",
+        "days": "Sunday",
+        "time": "N/A",
+        "source_url": "https://www.greeneking-pubs.co.uk/pubs/greater-london/prince-of-wales-kensington"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:37:51.081272+00:00",
+    "promotions_query": "what promotions and deals are on at The Prince of Wales, 8 Kensington Church Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 30,
+    "osm_id": "way/357280516",
+    "name": "The Duke of Wellington",
+    "lat": 51.5152183,
+    "lng": -0.2047974,
+    "address": "179 Portobello Road, London",
+    "website": "https://www.thedukeofwellingtonpub.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:37:54.392979+00:00",
+    "promotions_query": "what promotions and deals are on at The Duke of Wellington, 179 Portobello Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 31,
+    "osm_id": "way/756311627",
+    "name": "The Prince Bonaparte",
+    "lat": 51.5173989,
+    "lng": -0.1955377,
+    "address": "80 Chepstow Road, London",
+    "website": "https://www.theprincebonapartew2.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Free glass of Lillet Rosé on arrival with lunch",
+        "discount": "Free",
+        "days": "Sunday",
+        "time": "12:00pm - 10:30pm",
+        "source_url": "https://www.theprincebonapartew2.co.uk/"
+      },
+      {
+        "description": "£25 Bottles of Prosecco",
+        "discount": "£25",
+        "days": "Friday",
+        "time": "12:00pm - 11:00pm",
+        "source_url": "https://www.theprincebonapartew2.co.uk/"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:38:04.045806+00:00",
+    "promotions_query": "what promotions and deals are on at The Prince Bonaparte, 80 Chepstow Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 32,
+    "osm_id": "node/1587485161",
+    "name": "The Tabernacle",
+    "lat": 51.51677,
+    "lng": -0.201699,
+    "address": null,
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": null,
+    "promotions_last_updated": "2026-03-16T00:40:27.499555+00:00",
+    "promotions_query": "what promotions and deals are on at The Tabernacle, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 33,
+    "osm_id": "way/95307390",
+    "name": "The Leinster Arms",
+    "lat": 51.5116128,
+    "lng": -0.1828626,
+    "address": "17 Leinster Terrace, London",
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Cask Ale Mondays — discounted cask ale",
+        "discount": "variable",
+        "days": "Monday",
+        "time": "all day",
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/event"
+      },
+      {
+        "description": "Fizz Fridays — discounted sparkling wine",
+        "discount": "variable",
+        "days": "Friday",
+        "time": "all day",
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/event"
+      },
+      {
+        "description": "Mixr Mondays — double points on Stonegate's MiXR app",
+        "discount": "double points",
+        "days": "Monday",
+        "time": "12:00-23:00",
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events"
+      },
+      {
+        "description": "St Patricks Day celebration — flowing pints of Guinness",
+        "discount": "variable",
+        "days": "Tuesday",
+        "time": "12:00-23:00",
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events"
+      },
+      {
+        "description": "Board Games Tuesday — play board games with food & drinks",
+        "discount": "variable",
+        "days": "Tuesday",
+        "time": "17:00-22:00",
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events"
+      },
+      {
+        "description": "Saturday Hits — classic hits from past decades",
+        "discount": "variable",
+        "days": "Saturday",
+        "time": "20:00-23:00",
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:41:08.551708+00:00",
+    "promotions_query": "what promotions and deals are on at The Leinster Arms, 17 Leinster Terrace, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 34,
+    "osm_id": "way/128292693",
+    "name": "Goat Tavern",
+    "lat": 51.5020851,
+    "lng": -0.1877493,
+    "address": "3 Kensington High Street, London",
+    "website": "https://www.greeneking.co.uk/pubs/greater-london/goat-tavern",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "£3 pint available through the app",
+        "discount": "£3",
+        "days": "Friday - Sunday",
+        "time": "All day",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/goat-tavern"
+      },
+      {
+        "description": "Weekend Takeover competition with prizes including spa day, speaker, or £250 Secret Escapes voucher",
+        "discount": "Variable",
+        "days": "Friday - Sunday",
+        "time": "All day",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/goat-tavern"
+      },
+      {
+        "description": "£3 spirit & mixer available through the app",
+        "discount": "£3",
+        "days": "Friday - Sunday",
+        "time": "All day",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/goat-tavern"
+      },
+      {
+        "description": "Complimentary Jameson, ginger & lime when signing up",
+        "discount": "Free",
+        "days": "Wednesday",
+        "time": "All day",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/goat-tavern"
+      },
+      {
+        "description": "£2 Baby Guinness shots available through the app",
+        "discount": "£2",
+        "days": "Wednesday",
+        "time": "All day",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/goat-tavern"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:41:25.580562+00:00",
+    "promotions_query": "what promotions and deals are on at Goat Tavern, 3 Kensington High Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 35,
+    "osm_id": "way/192794418",
+    "name": "The Porchester",
+    "lat": 51.5161815,
+    "lng": -0.1877444,
+    "address": "88 Bishop's Bridge Road, London",
+    "website": "https://www.theporchester.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Join us every Wednesday at 7pm for West London's Best Quiz Night",
+        "discount": "entry £2 per person",
+        "days": "Wednesday",
+        "time": "7pm",
+        "source_url": "https://www.theporchester.co.uk/"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:41:31.173957+00:00",
+    "promotions_query": "what promotions and deals are on at The Porchester, 88 Bishop's Bridge Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 36,
+    "osm_id": "way/128292738",
+    "name": "The Greyhound",
+    "lat": 51.5010872,
+    "lng": -0.1893616,
+    "address": "1 Kensington Square, London",
+    "website": "https://www.greeneking.co.uk/pubs/greater-london/greyhound",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Watch the Six Nations at the Greyhound",
+        "discount": "N/A",
+        "days": "Monday to Sunday",
+        "time": "During match times",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/greyhound"
+      },
+      {
+        "description": "Sign up for a free drink",
+        "discount": "Free Jameson, ginger & lime",
+        "days": "Monday to Sunday",
+        "time": "N/A",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/greyhound"
+      },
+      {
+        "description": "£2 Baby Guinness shots",
+        "discount": "£2",
+        "days": "Monday to Sunday",
+        "time": "N/A",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/greyhound"
+      },
+      {
+        "description": "Lunch deal",
+        "discount": "Unbeatable price",
+        "days": "Monday to Friday",
+        "time": "12pm to 3pm",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/greyhound"
+      },
+      {
+        "description": "Watch the Six Nations 2026 with us",
+        "discount": "N/A",
+        "days": "Monday to Sunday",
+        "time": "During match times",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/greyhound"
+      },
+      {
+        "description": "Free main, dessert, or pint",
+        "discount": "Free",
+        "days": "Monday to Sunday",
+        "time": "N/A",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/greyhound"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:41:50.833626+00:00",
+    "promotions_query": "what promotions and deals are on at The Greyhound, 1 Kensington Square, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 37,
+    "osm_id": "way/357564841",
+    "name": "The Castle",
+    "lat": 51.5166253,
+    "lng": -0.2057168,
+    "address": "225 Portobello Road, London",
+    "website": "https://www.castleportobello.co.uk",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:41:57.265376+00:00",
+    "promotions_query": "what promotions and deals are on at The Castle, 225 Portobello Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 38,
+    "osm_id": "way/121101761",
+    "name": "The Cow",
+    "lat": 51.5191374,
+    "lng": -0.1953635,
+    "address": "89 Westbourne Park Road, London",
+    "website": "http://thecowlondon.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:42:05.580901+00:00",
+    "promotions_query": "what promotions and deals are on at The Cow, 89 Westbourne Park Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 39,
+    "osm_id": "way/824789669",
+    "name": "The Britannia",
+    "lat": 51.498619,
+    "lng": -0.1955963,
+    "address": "1 Allen Street, London",
+    "website": "https://www.britanniakensington.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:42:14.458647+00:00",
+    "promotions_query": "what promotions and deals are on at The Britannia, 1 Allen Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 40,
+    "osm_id": "way/121101785",
+    "name": "The Westbourne",
+    "lat": 51.5194293,
+    "lng": -0.1948285,
+    "address": "101 Westbourne Park Villas, London",
+    "website": "https://www.thewestbourne.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:42:17.757176+00:00",
+    "promotions_query": "what promotions and deals are on at The Westbourne, 101 Westbourne Park Villas, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 41,
+    "osm_id": "way/128419853",
+    "name": "Builders Arms",
+    "lat": 51.4994337,
+    "lng": -0.1883577,
+    "address": "1 Kensington Court Place, London",
+    "website": "http://www.thebuildersarmskensington.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:42:22.515461+00:00",
+    "promotions_query": "what promotions and deals are on at Builders Arms, 1 Kensington Court Place, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 42,
+    "osm_id": "way/772671772",
+    "name": "The Elgin",
+    "lat": 51.5162447,
+    "lng": -0.2088498,
+    "address": "96 Ladbroke Grove, London",
+    "website": "https://www.theelginnottinghill.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:42:25.756374+00:00",
+    "promotions_query": "what promotions and deals are on at The Elgin, 96 Ladbroke Grove, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 43,
+    "osm_id": "way/824948809",
+    "name": "Princess Victoria",
+    "lat": 51.4981906,
+    "lng": -0.1979652,
+    "address": "25 Earl's Court Road, London",
+    "website": "https://princessvictoriakensington.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:42:28.349738+00:00",
+    "promotions_query": "what promotions and deals are on at Princess Victoria, 25 Earl's Court Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 44,
+    "osm_id": "way/130524644",
+    "name": "The Cleveland Arms",
+    "lat": 51.5148732,
+    "lng": -0.1809743,
+    "address": "28 Chilworth Street, London",
+    "website": "https://www.theclevelandarms.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:42:32.290989+00:00",
+    "promotions_query": "what promotions and deals are on at The Cleveland Arms, 28 Chilworth Street, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 45,
+    "osm_id": "node/2151137768",
+    "name": "The Pelican",
+    "lat": 51.5188056,
+    "lng": -0.2046257,
+    "address": "45 All Saints Road, London",
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": null,
+    "promotions_last_updated": "2026-03-16T00:44:13.580098+00:00",
+    "promotions_query": "what promotions and deals are on at The Pelican, 45 All Saints Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 46,
+    "osm_id": "way/107063289",
+    "name": "The Mitre",
+    "lat": 51.5123637,
+    "lng": -0.1785028,
+    "address": "24 Craven Terrace, London",
+    "website": "https://www.mitrelancastergate.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:44:18.884330+00:00",
+    "promotions_query": "what promotions and deals are on at The Mitre, 24 Craven Terrace, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 47,
+    "osm_id": "node/446882529",
+    "name": "The Knight of Notting Hill",
+    "lat": 51.5169298,
+    "lng": -0.20989,
+    "address": "139 Lancaster Road, London",
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "Live music events featuring rappers, singers, and DJs",
+        "discount": "N/A",
+        "days": "Variable",
+        "time": "Until 1am",
+        "source_url": "https://dishcult.com/articles/say-hello-to-londons-newest-gastropub-the-knight-of-notting-hill"
+      },
+      {
+        "description": "Halloween-themed decorations and shots in pipettes",
+        "discount": "N/A",
+        "days": "Friday before Halloween",
+        "time": "N/A",
+        "source_url": "https://www.nationalworld.com/lifestyle/food-and-drink/the-knight-of-notting-hill-review-refined-indian-food-iconic-london-pub-4397629"
+      },
+      {
+        "description": "Complimentary glass of champagne offered by a local patron",
+        "discount": "N/A",
+        "days": "Friday before Halloween",
+        "time": "N/A",
+        "source_url": "https://www.nationalworld.com/lifestyle/food-and-drink/the-knight-of-notting-hill-review-refined-indian-food-iconic-london-pub-4397629"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:45:05.657340+00:00",
+    "promotions_query": "what promotions and deals are on at The Knight of Notting Hill, 139 Lancaster Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 48,
+    "osm_id": "way/436849635",
+    "name": "The Lock and Lantern",
+    "lat": 51.5206295,
+    "lng": -0.2007329,
+    "address": "60 Great Western Road, London",
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:45:33.625708+00:00",
+    "promotions_query": "what promotions and deals are on at The Lock and Lantern, 60 Great Western Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 49,
+    "osm_id": "way/749323368",
+    "name": "The Swan",
+    "lat": 51.5116567,
+    "lng": -0.1770506,
+    "address": "66 Bayswater Road, London",
+    "website": "https://www.swanhydepark.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:45:36.127610+00:00",
+    "promotions_query": "what promotions and deals are on at The Swan, 66 Bayswater Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 50,
+    "osm_id": "node/446882323",
+    "name": "Nova Cafe",
+    "lat": 51.518181,
+    "lng": -0.2088068,
+    "address": null,
+    "website": null,
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:45:54.323909+00:00",
+    "promotions_query": "what promotions and deals are on at Nova Cafe, London, London",
+    "venue_emoji": "☕"
+  },
+  {
+    "id": 51,
+    "osm_id": "way/112678856",
+    "name": "The Scarsdale Tavern",
+    "lat": 51.4969796,
+    "lng": -0.1989743,
+    "address": "23A Edwardes Square, London",
+    "website": "https://www.scarsdaletavern.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:45:57.196481+00:00",
+    "promotions_query": "what promotions and deals are on at The Scarsdale Tavern, 23A Edwardes Square, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 52,
+    "osm_id": "way/151789101",
+    "name": "The Devonshire Arms",
+    "lat": 51.4968085,
+    "lng": -0.1926957,
+    "address": "37 Marloes Road, London",
+    "website": "https://www.thedevonshirearmskensington.co.uk/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:46:03.627944+00:00",
+    "promotions_query": "what promotions and deals are on at The Devonshire Arms, 37 Marloes Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 53,
+    "osm_id": "way/829086948",
+    "name": "The Hansom Cab",
+    "lat": 51.49646,
+    "lng": -0.1972511,
+    "address": "84-86 Earl's Court Road, London",
+    "website": "https://www.thehansomcab.com/",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [],
+    "promotions_last_updated": "2026-03-16T00:46:10.260252+00:00",
+    "promotions_query": "what promotions and deals are on at The Hansom Cab, 84-86 Earl's Court Road, London, London",
+    "venue_emoji": "🍻"
+  },
+  {
+    "id": 54,
+    "osm_id": "way/813541218",
+    "name": "The Gloucester Arms",
+    "lat": 51.4987508,
+    "lng": -0.1839267,
+    "address": "34 Gloucester Road, London",
+    "website": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms",
+    "created_at": "2026-03-16T00:27:14.926983+00:00",
+    "promotions": [
+      {
+        "description": "£3 pint",
+        "discount": "£3",
+        "days": "Friday to Sunday",
+        "time": "Available 27/03 - 29/03",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms"
+      },
+      {
+        "description": "Weekend Takeover competition",
+        "discount": "Win spa day, speaker, or £250 Secret Escapes voucher",
+        "days": "Friday to Sunday",
+        "time": "Available 27/03 - 29/03",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms"
+      },
+      {
+        "description": "Complimentary Jameson, ginger & lime",
+        "discount": "Free drink",
+        "days": "Thursday",
+        "time": "St Patrick’s Day hours",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms"
+      },
+      {
+        "description": "£2 Baby Guinness shots",
+        "discount": "£2",
+        "days": "Thursday",
+        "time": "St Patrick’s Day hours",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms"
+      },
+      {
+        "description": "Lunch deal",
+        "discount": "Unbeatable price",
+        "days": "Monday to Friday",
+        "time": "12pm - 3pm",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms"
+      },
+      {
+        "description": "Watch Six Nations 2026",
+        "discount": "Free to watch",
+        "days": "February 5th onwards (Men's), April 11th onwards (Women's)",
+        "time": "Game times",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms"
+      },
+      {
+        "description": "Watch live sport",
+        "discount": "Free to watch",
+        "days": "Various",
+        "time": "Game times",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms"
+      },
+      {
+        "description": "Spin to Win with limited-edition burger and drink",
+        "discount": "Variable",
+        "days": "Various",
+        "time": "Available for a limited time",
+        "source_url": "https://www.greeneking.co.uk/pubs/greater-london/gloucester-arms"
+      }
+    ],
+    "promotions_last_updated": "2026-03-16T00:46:39.909739+00:00",
+    "promotions_query": "what promotions and deals are on at The Gloucester Arms, 34 Gloucester Road, London, London",
+    "venue_emoji": "🍻"
   }
 ]
