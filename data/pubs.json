@@ -1022,42 +1022,56 @@
         "discount": "variable",
         "days": "Monday",
         "time": "all day",
-        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/event"
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/event",
+        "screenshot_url": "/screenshots/https___www_pubsmiths_co_uk_leinster_arms_bayswater_event_0.png"
       },
       {
         "description": "Fizz Fridays — discounted sparkling wine",
         "discount": "variable",
         "days": "Friday",
         "time": "all day",
-        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/event"
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/event",
+        "screenshot_url": "/screenshots/https___www_pubsmiths_co_uk_leinster_arms_bayswater_event_1.png"
       },
       {
         "description": "Mixr Mondays — double points on Stonegate's MiXR app",
         "discount": "double points",
         "days": "Monday",
         "time": "12:00-23:00",
-        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events"
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events",
+        "screenshot_url": "/screenshots/https___www_pubsmiths_co_uk_leinster_arms_bayswater_events_3.png"
       },
       {
         "description": "St Patricks Day celebration — flowing pints of Guinness",
         "discount": "variable",
         "days": "Tuesday",
         "time": "12:00-23:00",
-        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events"
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events",
+        "screenshot_url": "/screenshots/https___www_pubsmiths_co_uk_leinster_arms_bayswater_events_0.png"
       },
       {
         "description": "Board Games Tuesday — play board games with food & drinks",
         "discount": "variable",
         "days": "Tuesday",
         "time": "17:00-22:00",
-        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events"
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events",
+        "screenshot_url": "/screenshots/https___www_pubsmiths_co_uk_leinster_arms_bayswater_events_1.png"
       },
       {
         "description": "Saturday Hits — classic hits from past decades",
         "discount": "variable",
         "days": "Saturday",
         "time": "20:00-23:00",
-        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events"
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events",
+        "screenshot_url": "/screenshots/https___www_pubsmiths_co_uk_leinster_arms_bayswater_events_2.png"
+      },
+      {
+        "description": "Watch the Grand National live",
+        "discount": "variable",
+        "days": "Saturday",
+        "time": "12:00-18:00",
+        "source_url": "https://www.pubsmiths.co.uk/leinster-arms-bayswater/events",
+        "screenshot_url": "/screenshots/https___www_pubsmiths_co_uk_leinster_arms_bayswater_events_4.png"
       }
     ],
     "promotions_last_updated": "2026-03-16T00:41:08.551708+00:00",
