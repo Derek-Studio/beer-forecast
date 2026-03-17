@@ -31,6 +31,14 @@ PROMOTION_SCHEMA = json.dumps([
     {"description": "", "discount": "", "days": "", "time": "", "source_url": ""}
 ])
 
+RICH_SCHEMA = json.dumps({
+    "promotions": [{"title": "", "description": "", "discount": "", "days": "", "time": "", "source_url": "", "extract_string": ""}],
+    "events": [{"title": "", "description": "", "date": "", "time": "", "source_url": "", "extract_string": ""}],
+    "opening_times": {"monday": "", "tuesday": "", "wednesday": "", "thursday": "", "friday": "", "saturday": "", "sunday": "", "source_url": ""},
+    "description": {"text": "", "source_url": ""},
+    "facilities": [{"name": "", "source_url": ""}],
+})
+
 STALE_AFTER_DAYS = 7
 LOOP_SLEEP_HOURS = 6
 DEFAULT_PROVIDER = os.environ.get("AGENT_PROVIDER", "minimax")         # minimax (default), claude, ollama
@@ -45,18 +53,33 @@ def save_pubs(pubs: list[dict]) -> None:
     DATA_PATH.write_text(json.dumps(pubs, indent=2))
 
 
-def call_agent(pub_name: str, address: str, raw_query: str, start_url: str | None = None, provider: str = DEFAULT_PROVIDER, search_provider: str = DEFAULT_SEARCH_PROVIDER) -> tuple[object, str]:
+def call_agent(pub_name: str, address: str, raw_query: str, start_url: str | None = None, provider: str = DEFAULT_PROVIDER, search_provider: str = DEFAULT_SEARCH_PROVIDER, rich_mode: bool = True) -> tuple[object, str]:
     """Call research agent subprocess. Returns (parsed_json_or_none, raw_stdout)."""
-    cmd = [
-        str(AGENT_PYTHON),
-        str(AGENT_PATH),
-        raw_query,
-        "--schema", PROMOTION_SCHEMA,
-        "--provider", provider,
-        "--search-provider", search_provider,
-    ]
-    if start_url:
-        cmd += ["--start-url", start_url]
+    if rich_mode:
+        cmd = [
+            str(AGENT_PYTHON),
+            str(AGENT_PATH),
+            raw_query,
+            "--schema", RICH_SCHEMA,
+            "--provider", provider,
+            "--search-provider", search_provider,
+            "--pub-site-mode",
+            "--pub-name", pub_name,
+            "--pub-address", address,
+        ]
+        if start_url:
+            cmd += ["--start-url", start_url]
+    else:
+        cmd = [
+            str(AGENT_PYTHON),
+            str(AGENT_PATH),
+            raw_query,
+            "--schema", PROMOTION_SCHEMA,
+            "--provider", provider,
+            "--search-provider", search_provider,
+        ]
+        if start_url:
+            cmd += ["--start-url", start_url]
     try:
         result = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
         stdout = result.stdout
@@ -117,10 +140,17 @@ def run_once(pubs: list[dict], limit: int | None = None) -> list[dict]:
         print(f"[{i}/{total}] Processing: {pub['name']}")
         print(f"    Query: {raw_query}")
 
-        data, _ = call_agent(pub["name"], addr_str, raw_query, pub.get("known_promotions_url"), DEFAULT_PROVIDER)
+        data, _ = call_agent(pub["name"], addr_str, raw_query, pub.get("website"), DEFAULT_PROVIDER)
         now = datetime.now(timezone.utc).isoformat()
 
-        by_id[pub["id"]]["promotions"] = data
+        if isinstance(data, dict):
+            by_id[pub["id"]]["promotions"]        = data.get("promotions") or []
+            by_id[pub["id"]]["events"]            = data.get("events") or []
+            by_id[pub["id"]]["opening_times"]     = data.get("opening_times") or {}
+            by_id[pub["id"]]["venue_description"] = data.get("description") or {}
+            by_id[pub["id"]]["facilities"]        = data.get("facilities") or []
+        elif isinstance(data, list):
+            by_id[pub["id"]]["promotions"] = data  # legacy compat
         by_id[pub["id"]]["promotions_last_updated"] = now
         by_id[pub["id"]]["promotions_query"] = raw_query
 
