@@ -37,6 +37,7 @@ RICH_SCHEMA = json.dumps({
     "opening_times": {"monday": "", "tuesday": "", "wednesday": "", "thursday": "", "friday": "", "saturday": "", "sunday": "", "source_url": ""},
     "description": {"text": "", "source_url": ""},
     "facilities": [{"name": "", "source_url": ""}],
+    "pub_emoji": "",
 })
 
 STALE_AFTER_DAYS = 7
@@ -149,6 +150,8 @@ def run_once(pubs: list[dict], limit: int | None = None) -> list[dict]:
             by_id[pub["id"]]["opening_times"]     = data.get("opening_times") or {}
             by_id[pub["id"]]["venue_description"] = data.get("description") or {}
             by_id[pub["id"]]["facilities"]        = data.get("facilities") or []
+            if data.get("pub_emoji"):
+                by_id[pub["id"]]["venue_emoji"]   = data.get("pub_emoji")
         elif isinstance(data, list):
             by_id[pub["id"]]["promotions"] = data  # legacy compat
         by_id[pub["id"]]["promotions_last_updated"] = now
